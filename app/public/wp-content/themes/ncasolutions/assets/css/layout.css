@@ -73,6 +73,17 @@
     font-weight: 700;
 }
 
+.primary-menu .menu-item.current-menu-item > a::after,
+.primary-menu .menu-item.current_page_item > a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.42rem;
+    height: 2px;
+    background: currentColor;
+}
+
 .primary-menu .menu-item-connect > a {
     min-height: 3.2rem;
     padding-inline: 1.42rem;
@@ -189,5 +200,10 @@
     .primary-menu .menu-item-connect > a {
         min-height: 2.7rem;
         font-size: 0.95rem;
+    }
+
+    .nca-footer-ribbon {
+        letter-spacing: 0.12em;
+        font-size: 0.8rem;
     }
 }
