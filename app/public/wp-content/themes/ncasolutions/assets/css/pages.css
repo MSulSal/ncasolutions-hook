@@ -4,18 +4,83 @@
     background: rgba(255, 255, 255, 0.45);
 }
 
+.nca-kicker {
+    font-size: 0.96rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--nca-color-accent);
+    font-weight: 600;
+}
+
+.nca-title-hero,
+.nca-title-xl,
+.nca-title-lg,
+.nca-title-md {
+    font-family: var(--nca-font-serif);
+    font-weight: 400;
+    letter-spacing: -0.032em;
+    color: var(--nca-color-ink);
+}
+
+.nca-title-hero {
+    font-size: clamp(3.2rem, 7.1vw, 6.7rem);
+    line-height: 0.96;
+}
+
+.nca-title-xl {
+    font-size: clamp(2.8rem, 5.7vw, 5.35rem);
+    line-height: 0.98;
+}
+
+.nca-title-lg {
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    line-height: 0.99;
+}
+
+.nca-title-md {
+    font-size: clamp(2rem, 4.1vw, 3.45rem);
+    line-height: 1.04;
+}
+
+.nca-title-accent {
+    color: var(--nca-color-accent);
+}
+
+.nca-text-lg {
+    font-size: clamp(1.15rem, 2vw, 1.76rem);
+    line-height: 1.55;
+}
+
+.nca-text-md {
+    font-size: clamp(1.04rem, 1.5vw, 1.42rem);
+    line-height: 1.8;
+}
+
+.nca-text-sm {
+    font-size: clamp(0.95rem, 1.26vw, 1.15rem);
+    line-height: 1.9;
+    color: var(--nca-color-ink-soft);
+}
+
 .nca-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.9rem;
-    min-height: 3rem;
-    padding: 0.4rem 1.35rem;
+    min-height: 3.06rem;
+    padding: 0.3rem 1.32rem;
     border: 1px solid currentColor;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.07em;
     font-size: 0.9rem;
     font-weight: 600;
+    line-height: 1;
+    transition: opacity var(--nca-transition), background-color var(--nca-transition), color var(--nca-transition);
+}
+
+.nca-button__arrow {
+    font-size: 1.28em;
+    margin-top: -0.05em;
 }
 
 .nca-button--dark {
@@ -32,5 +97,68 @@
 
 .nca-button:hover,
 .nca-button:focus-visible {
-    opacity: 0.9;
+    opacity: 0.85;
+}
+
+.nca-section {
+    padding-block: clamp(3.5rem, 7vw, 6.35rem);
+}
+
+.nca-section--tight {
+    padding-block: clamp(2.4rem, 4.9vw, 4.2rem);
+}
+
+.nca-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.nca-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.nca-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.nca-grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.nca-card-rail {
+    border-left: 1px solid var(--nca-color-border);
+}
+
+.nca-card-rail > * {
+    border-right: 1px solid var(--nca-color-border);
+}
+
+.nca-dark-slab {
+    background: linear-gradient(145deg, #0a111a 0%, #101a26 70%, #0a111a 100%);
+    color: #f2eee9;
+}
+
+.nca-dark-slab .nca-rule {
+    background: var(--nca-color-accent);
+}
+
+@media (max-width: 1024px) {
+    .nca-grid-2,
+    .nca-grid-3,
+    .nca-grid-4,
+    .nca-grid-5 {
+        grid-template-columns: 1fr;
+    }
+
+    .nca-card-rail {
+        border-left: 0;
+    }
+
+    .nca-card-rail > * {
+        border-right: 0;
+        border-top: 1px solid var(--nca-color-border);
+    }
 }

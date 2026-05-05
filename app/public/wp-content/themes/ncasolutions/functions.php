@@ -101,13 +101,41 @@ function nca_body_classes(array $classes): array
 }
 add_filter('body_class', 'nca_body_classes');
 
+function nca_primary_menu_fallback(): void
+{
+    ?>
+    <ul class="primary-menu">
+        <li class="menu-item"><a href="<?php echo esc_url(home_url('/services/')); ?>"><?php esc_html_e('Services', 'ncasolutions'); ?></a></li>
+        <li class="menu-item"><a href="#"><?php esc_html_e('Industries', 'ncasolutions'); ?></a></li>
+        <li class="menu-item"><a href="#"><?php esc_html_e('Our Insights', 'ncasolutions'); ?></a></li>
+        <li class="menu-item"><a href="<?php echo esc_url(home_url('/our-team/')); ?>"><?php esc_html_e('Our Team', 'ncasolutions'); ?></a></li>
+        <li class="menu-item menu-item-connect"><a href="<?php echo esc_url(home_url('/services/')); ?>"><?php esc_html_e("LET'S CONNECT", 'ncasolutions'); ?></a></li>
+    </ul>
+    <?php
+}
+
+function nca_nav_item_class(array $classes, WP_Post $item, stdClass $args): array
+{
+    if (
+        isset($args->theme_location)
+        && 'primary' === $args->theme_location
+        && isset($item->title)
+        && in_array(wp_strtoupper((string) $item->title), ['LET\'S CONNECT', 'LET’S CONNECT'], true)
+    ) {
+        $classes[] = 'menu-item-connect';
+    }
+
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'nca_nav_item_class', 10, 3);
+
 function nca_elementor_compatibility(): void
 {
     if (! did_action('elementor/loaded')) {
         return;
     }
 
-    // Keep page layouts simple so Elementor can take over content areas later.
-    remove_theme_support('widgets-block-editor');
+    // Default templates intentionally use clean wrappers for future Elementor use.
+    add_post_type_support('page', 'excerpt');
 }
 add_action('after_setup_theme', 'nca_elementor_compatibility', 20);
