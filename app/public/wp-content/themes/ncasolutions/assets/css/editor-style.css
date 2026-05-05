@@ -1,0 +1,9 @@
+body {
+    background: #ffffff;
+    font-family: "Instrument Sans Custom", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #11161f;
+}
+
+.editor-styles-wrapper {
+    padding: 1.25rem;
+}

@@ -1,0 +1,36 @@
+.nca-placeholder {
+    border: 1px dashed var(--nca-color-border);
+    padding: var(--nca-space-8);
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.nca-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    min-height: 3rem;
+    padding: 0.4rem 1.35rem;
+    border: 1px solid currentColor;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.nca-button--dark {
+    background: var(--nca-color-dark);
+    border-color: var(--nca-color-dark);
+    color: #fff;
+}
+
+.nca-button--outline {
+    color: var(--nca-color-ink);
+    border-color: var(--nca-color-accent);
+    background: transparent;
+}
+
+.nca-button:hover,
+.nca-button:focus-visible {
+    opacity: 0.9;
+}

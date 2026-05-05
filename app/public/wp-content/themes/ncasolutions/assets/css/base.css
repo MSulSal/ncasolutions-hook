@@ -1,0 +1,98 @@
+:root {
+    --nca-color-ink: #11161f;
+    --nca-color-ink-soft: #343a43;
+    --nca-color-bg: #ede9e6;
+    --nca-color-bg-alt: #f5f3f1;
+    --nca-color-accent: #b08f67;
+    --nca-color-dark: #0d121b;
+    --nca-color-border: #d7d0c8;
+
+    --nca-font-serif: "Cardo Custom", Georgia, "Times New Roman", serif;
+    --nca-font-sans: "Instrument Sans Custom", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    --nca-content-max: 1360px;
+    --nca-content-pad: clamp(1.25rem, 3vw, 2.5rem);
+
+    --nca-space-2: 0.5rem;
+    --nca-space-3: 0.75rem;
+    --nca-space-4: 1rem;
+    --nca-space-6: 1.5rem;
+    --nca-space-8: 2rem;
+    --nca-space-10: 2.5rem;
+    --nca-space-12: 3rem;
+    --nca-space-16: 4rem;
+
+    --nca-radius-0: 0;
+    --nca-transition: 0.2s ease;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--nca-color-bg);
+    color: var(--nca-color-ink);
+    font-family: var(--nca-font-sans);
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+picture,
+video,
+canvas {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+figure,
+blockquote {
+    margin: 0;
+}
+
+ul,
+ol {
+    padding: 0;
+    list-style: none;
+}
+
+.site {
+    overflow-x: clip;
+}
