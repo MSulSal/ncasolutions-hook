@@ -1,0 +1,32 @@
+# LocalWP / runtime artifacts
+logs/
+conf/
+app/sql/
+
+# Ignore full WP core and track only project customization files
+app/public/*
+!app/public/wp-content/
+
+app/public/wp-content/*
+!app/public/wp-content/themes/
+!app/public/wp-content/plugins/
+
+# Themes: keep references + custom theme only
+app/public/wp-content/themes/*
+!app/public/wp-content/themes/index.php
+!app/public/wp-content/themes/Home Page Select.png
+!app/public/wp-content/themes/Our Team.png
+!app/public/wp-content/themes/Services 2.png
+!app/public/wp-content/themes/Screenshot 2026-05-05 092456.png
+!app/public/wp-content/themes/ncasolutions/
+
+# Plugins: keep placeholder + custom plugin only
+app/public/wp-content/plugins/*
+!app/public/wp-content/plugins/index.php
+!app/public/wp-content/plugins/ncasolutions-core/
+
+# Optional local editor/project files
+.vscode/
+*.code-workspace
+.DS_Store
+Thumbs.db
