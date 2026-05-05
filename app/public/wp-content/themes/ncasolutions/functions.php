@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Theme bootstrap.
  *
@@ -116,11 +116,17 @@ function nca_primary_menu_fallback(): void
 
 function nca_nav_item_class(array $classes, WP_Post $item, stdClass $args): array
 {
+    $title = '';
+    if (isset($item->title) && is_string($item->title)) {
+        $title = wp_specialchars_decode($item->title, ENT_QUOTES);
+        $title = str_replace(["\u{2019}", "\u{2018}"], "'", $title);
+        $title = strtoupper($title);
+    }
+
     if (
         isset($args->theme_location)
         && 'primary' === $args->theme_location
-        && isset($item->title)
-        && in_array(wp_strtoupper((string) $item->title), ['LET\'S CONNECT', 'LET’S CONNECT'], true)
+        && in_array($title, ["LET'S CONNECT"], true)
     ) {
         $classes[] = 'menu-item-connect';
     }
