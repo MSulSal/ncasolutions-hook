@@ -116,7 +116,11 @@ function nca_primary_menu_fallback(): void
 
 function nca_nav_item_class(array $classes, WP_Post $item, stdClass $args): array
 {
+    $url = '';
     $title = '';
+    if (isset($item->url) && is_string($item->url)) {
+        $url = $item->url;
+    }
     if (isset($item->title) && is_string($item->title)) {
         $title = wp_specialchars_decode($item->title, ENT_QUOTES);
         $title = str_replace(["\u{2019}", "\u{2018}"], "'", $title);
@@ -129,6 +133,18 @@ function nca_nav_item_class(array $classes, WP_Post $item, stdClass $args): arra
         && in_array($title, ["LET'S CONNECT"], true)
     ) {
         $classes[] = 'menu-item-connect';
+    }
+
+    if (
+        isset($args->theme_location)
+        && 'primary' === $args->theme_location
+        && '' !== $url
+        && str_contains($url, '#')
+    ) {
+        $classes = array_values(array_diff(
+            $classes,
+            ['current-menu-item', 'current_page_item', 'current-menu-ancestor', 'current_page_ancestor']
+        ));
     }
 
     return $classes;

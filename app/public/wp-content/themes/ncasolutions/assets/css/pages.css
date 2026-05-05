@@ -438,6 +438,10 @@
     gap: 1.35rem;
 }
 
+.nca-team-hero__overlay .nca-title-xl {
+    line-height: 1.08;
+}
+
 .nca-team-values {
     border-bottom: 1px solid var(--nca-color-border);
 }
