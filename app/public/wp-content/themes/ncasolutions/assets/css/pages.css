@@ -610,3 +610,169 @@
         grid-template-columns: 1fr;
     }
 }
+
+.nca-services-hero {
+    position: relative;
+    min-height: clamp(440px, 56vw, 650px);
+    border-bottom: 1px solid var(--nca-color-border);
+    overflow: hidden;
+}
+
+.nca-services-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nca-services-hero__overlay {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: min(48rem, 58%);
+    background: linear-gradient(90deg, rgba(237, 233, 230, 0.98) 0%, rgba(237, 233, 230, 0.94) 64%, rgba(237, 233, 230, 0.32) 100%);
+    padding: clamp(2.4rem, 5.2vw, 4.5rem) clamp(1.25rem, 3.7vw, 3.6rem) clamp(2rem, 4.8vw, 3.8rem);
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+}
+
+.nca-services-hero__overlay .nca-text-md {
+    max-width: 30rem;
+}
+
+.nca-services-what {
+    padding-inline: clamp(1.25rem, 3.7vw, 3.7rem);
+    border-bottom: 1px solid var(--nca-color-border);
+}
+
+.nca-services-what__head {
+    text-align: center;
+    max-width: 49rem;
+    margin-inline: auto;
+    display: grid;
+    justify-items: center;
+    gap: 1.2rem;
+    margin-bottom: clamp(2rem, 3.8vw, 3rem);
+}
+
+.nca-services-what__cards {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.nca-services-card {
+    padding: clamp(2rem, 3.9vw, 3rem) clamp(0.8rem, 1.7vw, 1.35rem) clamp(1.8rem, 3.5vw, 2.8rem);
+    text-align: center;
+    display: grid;
+    align-content: start;
+    gap: 0.95rem;
+}
+
+.nca-services-card__icon {
+    width: clamp(2.7rem, 3.8vw, 3.45rem);
+    margin-inline: auto;
+    color: var(--nca-color-accent);
+}
+
+.nca-services-card__icon svg {
+    width: 100%;
+    height: auto;
+}
+
+.nca-services-card h3 {
+    font-size: clamp(0.95rem, 1.08vw, 1.08rem);
+    line-height: 1.25;
+    letter-spacing: 0.07em;
+}
+
+.nca-services-card p {
+    font-size: clamp(0.95rem, 1.1vw, 1.12rem);
+    line-height: 1.8;
+    color: var(--nca-color-ink-soft);
+}
+
+.nca-services-card__link {
+    color: var(--nca-color-accent);
+    font-size: clamp(0.88rem, 1vw, 1rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.nca-services-approach,
+.nca-services-commitment {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    border-bottom: 1px solid var(--nca-color-border);
+}
+
+.nca-services-approach__copy,
+.nca-services-commitment__copy {
+    padding: clamp(2.2rem, 4.4vw, 3.8rem) clamp(1.25rem, 3.4vw, 3rem) clamp(2.2rem, 4.4vw, 3.8rem) clamp(1.25rem, 3.7vw, 3.7rem);
+    display: grid;
+    align-content: start;
+    gap: 1.1rem;
+}
+
+.nca-services-approach__copy .nca-button,
+.nca-services-commitment__copy .nca-button {
+    justify-self: start;
+}
+
+.nca-services-approach__image-wrap,
+.nca-services-commitment__image-wrap {
+    min-height: 360px;
+}
+
+.nca-services-approach__image,
+.nca-services-commitment__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nca-services-commitment {
+    grid-template-columns: 52% 48%;
+    border-bottom: 0;
+}
+
+@media (max-width: 1200px) {
+    .nca-services-what__cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1024px) {
+    .nca-services-hero__overlay {
+        width: 100%;
+        max-width: none;
+        position: relative;
+        background: var(--nca-color-bg);
+    }
+
+    .nca-services-hero__image {
+        min-height: 320px;
+    }
+
+    .nca-services-approach,
+    .nca-services-commitment {
+        grid-template-columns: 1fr;
+    }
+
+    .nca-services-approach__copy,
+    .nca-services-commitment__copy {
+        padding-left: var(--nca-content-pad);
+        padding-right: var(--nca-content-pad);
+    }
+}
+
+@media (max-width: 768px) {
+    .nca-services-what__cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .nca-services-what__cards {
+        grid-template-columns: 1fr;
+    }
+}
