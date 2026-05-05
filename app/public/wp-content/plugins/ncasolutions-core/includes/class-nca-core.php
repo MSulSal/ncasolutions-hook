@@ -11,19 +11,19 @@ final class NCA_Core
 {
     private const NONCE_ACTION = 'nca_core_page_fields';
     private const NONCE_NAME = 'nca_core_page_fields_nonce';
+    private const SETUP_OPTION = 'nca_core_setup_version';
 
     public static function boot(): void
     {
         add_action('init', [self::class, 'register_image_sizes']);
         add_action('add_meta_boxes', [self::class, 'register_meta_boxes'], 10, 2);
         add_action('save_post_page', [self::class, 'save_page_meta']);
+        add_action('admin_init', [self::class, 'maybe_run_setup']);
     }
 
     public static function activate(): void
     {
-        self::ensure_pages_exist();
-        self::ensure_primary_menu();
-        self::assign_front_page();
+        self::run_setup();
     }
 
     public static function register_image_sizes(): void
@@ -148,6 +148,19 @@ final class NCA_Core
         }
     }
 
+    public static function maybe_run_setup(): void
+    {
+        if (! current_user_can('manage_options')) {
+            return;
+        }
+
+        if (! self::setup_required()) {
+            return;
+        }
+
+        self::run_setup();
+    }
+
     private static function page_config(): array
     {
         return [
@@ -241,6 +254,13 @@ final class NCA_Core
 
             if ($existing instanceof WP_Post) {
                 $page_id = $existing->ID;
+
+                if ('publish' !== $existing->post_status) {
+                    wp_update_post([
+                        'ID'          => $page_id,
+                        'post_status' => 'publish',
+                    ]);
+                }
             } else {
                 $page_id = wp_insert_post([
                     'post_type'   => 'page',
@@ -325,6 +345,52 @@ final class NCA_Core
 
         update_option('show_on_front', 'page');
         update_option('page_on_front', $home_page->ID);
+    }
+
+    private static function run_setup(): void
+    {
+        self::ensure_pages_exist();
+        self::ensure_primary_menu();
+        self::assign_front_page();
+        update_option(self::SETUP_OPTION, NCA_CORE_VERSION);
+    }
+
+    private static function setup_required(): bool
+    {
+        $version = get_option(self::SETUP_OPTION);
+        if (! is_string($version) || version_compare($version, NCA_CORE_VERSION, '<')) {
+            return true;
+        }
+
+        foreach (['home', 'our-team', 'services'] as $slug) {
+            $page = get_page_by_path($slug, OBJECT, 'page');
+            if (! $page instanceof WP_Post) {
+                return true;
+            }
+            if ('publish' !== $page->post_status) {
+                return true;
+            }
+        }
+
+        $home_page = get_page_by_path('home', OBJECT, 'page');
+        if (! $home_page instanceof WP_Post) {
+            return true;
+        }
+
+        if ('page' !== get_option('show_on_front')) {
+            return true;
+        }
+
+        if ((int) get_option('page_on_front') !== (int) $home_page->ID) {
+            return true;
+        }
+
+        $locations = get_theme_mod('nav_menu_locations', []);
+        if (! is_array($locations) || empty($locations['primary'])) {
+            return true;
+        }
+
+        return false;
     }
 }
 
