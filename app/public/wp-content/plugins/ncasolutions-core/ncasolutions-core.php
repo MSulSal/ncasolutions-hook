@@ -19,3 +19,4 @@ define('NCA_CORE_URL', plugin_dir_url(__FILE__));
 require_once NCA_CORE_PATH . 'includes/class-nca-core.php';
 
 NCA_Core::boot();
+register_activation_hook(NCA_CORE_FILE, ['NCA_Core', 'activate']);

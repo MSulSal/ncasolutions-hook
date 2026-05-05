@@ -139,3 +139,17 @@ function nca_elementor_compatibility(): void
     add_post_type_support('page', 'excerpt');
 }
 add_action('after_setup_theme', 'nca_elementor_compatibility', 20);
+
+if (! function_exists('nca_core_get_page_field')) {
+    function nca_core_get_page_field(int $post_id, string $key, string $default = ''): string
+    {
+        return $default;
+    }
+}
+
+if (! function_exists('nca_core_get_page_json')) {
+    function nca_core_get_page_json(int $post_id, string $key, array $default = []): array
+    {
+        return $default;
+    }
+}
